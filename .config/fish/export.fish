@@ -1,6 +1,6 @@
 # Exports
 
-export WORKSPACE="/Users/et31464/workspace"
+export WORKSPACE="/Users/e212239/workspace"
 
 # Java
 export JAVA_8_HOME=(/usr/libexec/java_home -v1.8)
