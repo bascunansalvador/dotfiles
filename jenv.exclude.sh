@@ -5,18 +5,18 @@
 # Setup jenv
 brew install jenv
 
-echo "Adding adoptopenjdk 8 to jenv"
-jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+echo "Adding temurin 8 to jenv"
+jenv add /Library/Java/JavaVirtualMachines/temurin-8.jdk/Contents/Home
 
-echo "Adding adoptopenjdk 11 to jenv"
-jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home
+echo "Adding temurin 11 to jenv"
+jenv add /Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home
 
-echo "Adding adoptopenjdk 12 to jenv"
-jenv add /Library/Java/JavaVirtualMachines/adoptopenjdk-12.jdk/Contents/Home
+echo "Adding temurin 17 to jenv"
+jenv add /Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home
 
 # This could be made generic by having the user select from a list of "jenv versions"
-echo "Setting global java version to 1.8.0.222"
-jenv global 1.8.0.222
+echo "Setting global java version to 11.0.14"
+jenv global 11.0.14
 
 echo "Enable maven plugin that makes jenv take control of java version for maven"
 jenv sh-enable-plugin maven
