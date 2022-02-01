@@ -7,7 +7,7 @@ init () {
     echo "${BLUE}Initializing workspace${NC}"
     mkdir -pv ${HOME}/workspace
     echo "${BLUE}Initializing jetty dir${NC}"
-    sh jetty.exclude.sh
+    sh jetty/jetty-init.sh
 }
 
 link () {
@@ -15,9 +15,21 @@ link () {
     echo "Proceed? (y/n)"
     read resp
     if [ "$resp" = 'y' -o "$resp" = 'Y' ] ; then
-        for file in $( ls -A | grep -vE '\.exclude*|\.git$|\.gitignore|.*.md' ) ; do
-            ln -svf "$PWD/$file" "$HOME"
-        done
+        mkdir -pv "${HOME}/.config"
+        mkdir -pv "${HOME}/.config/fish"
+        ln -svf "$PWD/.aliases" "$HOME"
+        ln -svf "$PWD/.bash_profile" "$HOME"
+        ln -svf "$PWD/.exports" "$HOME"
+        ln -svf "$PWD/.functions" "$HOME"
+        ln -svf "$PWD/.vimrc" "$HOME"
+        ln -svf "$PWD/.zshenv" "$HOME"
+        ln -svf "$PWD/.zshrc" "$HOME"
+        ln -svf "$PWD/.aliases" "$HOME"
+        ln -svf "$PWD/.config/fish/config.fish" "$HOME/.config/fish/config.fish"
+        ln -svf "$PWD/.config/fish/alias.fish" "$HOME/.config/fish/alias.fish"
+        ln -svf "$PWD/.config/fish/export.fish" "$HOME/.config/fish/export.fish"
+        ln -svf "$PWD/.config/fish/completions" "$HOME/.config/fish/completions"
+        ln -svf "$PWD/.config/starship.toml" "$HOME/.config/starship.toml"
         echo "Symlinking complete"
     else
         echo "Symlinking cancelled"
@@ -32,7 +44,7 @@ install_tools () {
         read resp
         if [ "$resp" = 'y' -o "$resp" = 'Y' ] ; then
             echo "Installing useful stuff using brew. This may take a while..."
-            sh brew.exclude.sh
+            sh brew-install.sh
         else
             echo "Brew installation cancelled by user"
         fi
@@ -43,7 +55,7 @@ install_tools () {
 
 compile_exports () {
     echo "${BLUE}Setting compiled exports${NC}"
-    sh compiled-exports.exclude.sh
+    sh compiled-exports.sh
 }
 
 set_zsh () {
@@ -63,7 +75,8 @@ oh_my_zsh() {
     if [ "$resp" = 'y' -o "$resp" = 'Y' ] ; then
         echo "installing oh my zsh"
         sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+          ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     else
         echo "skipping oh my zsh"
     fi
@@ -88,4 +101,3 @@ set_zsh
 oh_my_zsh
 jenv
 link
-
