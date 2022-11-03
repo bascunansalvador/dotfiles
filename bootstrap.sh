@@ -25,6 +25,7 @@ link () {
         ln -svf "$PWD/.zshenv" "$HOME"
         ln -svf "$PWD/.zshrc" "$HOME"
         ln -svf "$PWD/.aliases" "$HOME"
+        ln -svf "$PWD/.ideavim" "$HOME"
         ln -svf "$PWD/.config/fish/config.fish" "$HOME/.config/fish/config.fish"
         ln -svf "$PWD/.config/fish/alias.fish" "$HOME/.config/fish/alias.fish"
         ln -svf "$PWD/.config/fish/export.fish" "$HOME/.config/fish/export.fish"
