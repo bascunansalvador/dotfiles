@@ -1,12 +1,10 @@
-# Z SH env 
+# Exports
+export WORKSPACE='/Users/salvadorbascunan/workspace'
 
-# Source
-source ~/.exports
-source ~/.functions
-source ~/.aliases
+# Java
+export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+export JAVA_17_HOME=$(/usr/libexec/java_home -v17)
+export JAVA_21_HOME=$(/usr/libexec/java_home -v21)
 
-# Default to Java 17
-java17
-
-# z support
-. /usr/local/etc/profile.d/z.sh

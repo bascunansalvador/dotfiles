@@ -1,13 +1,259 @@
-format="$directory$all$character"
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](color_orange)\
+$os\
+$username\
+[](bg:color_yellow fg:color_orange)\
+$directory\
+[](fg:color_yellow bg:color_aqua)\
+$git_branch\
+[](fg:color_aqua bg:color_blue)\
+$git_status\
+[](fg:color_blue bg:color_bg3)\
+$c\
+$rust\
+$golang\
+$java\
+$kotlin\
+$haskell\
+$python\
+[](fg:color_bg3 bg:color_bg1)\
+$time\
+[ ](fg:color_bg1)\
+$line_break$character"""
+
+palette = 'gruvbox_dark'
+
+[palettes.gruvbox_dark]
+color_fg0 = '#fbf1c7'
+color_bg1 = '#3c3836'
+color_bg3 = '#665c54'
+color_blue = '#458588'
+color_aqua = '#689d6a'
+color_green = '#98971a'
+color_orange = '#d65d0e'
+color_purple = '#b16286'
+color_red = '#cc241d'
+color_yellow = '#d79921'
+
+[os]
+disabled = false
+style = "bg:color_orange fg:color_fg0"
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+
+[username]
+show_always = true
+style_user = "bg:color_orange fg:color_fg0"
+style_root = "bg:color_orange fg:color_fg0"
+format = '[ $user ]($style)'
+
+[directory]
+style = "fg:color_fg0 bg:color_yellow"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+
+[git_branch]
+symbol = ""
+style = "bg:color_aqua"
+format = '[[ $symbol $branch ](fg:color_fg0 bg:color_aqua)]($style)'
+
+[git_status]
+style = "bg:color_blue"
+conflicted = ' [✘](bg:color_blue)'
+up_to_date = ' [✓](bg:color_blue)'
+ahead = ' [\[⇡ × $count\]](bg:color_blue)'
+behind = ' [\[⇣ × $count\]](bg:color_blue)'
+diverged =' [⇕ \[⇡ × $ahead_count\] \[⇣ × $behind_count\]](bg:color_blue)'
+untracked = ' [\[?? × $count\]](bg:color_blue)'
+stashed = ' [\[^^ × $count\]](bg:color_blue)'
+modified = ' [\[!! ×$count\]](bg:color_blue)'
+staged = ' [\[++ × $count\]](bg:color_blue)'
+renamed = ' [\[>> × $count]\](bg:color_blue)'
+deleted = ' [\[xx × $count]\](bg:color_blue)'
+format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_blue)]($style)'
+
+# [git_status]
+# conflicted = ' [✘](red) '
+# up_to_date = ' [✓](green)  '
+# ahead = ' [\[⇡ × $count\]](cyan) '
+# behind = ' [\[⇣ × $count\]](yellow) '
+# diverged =' [⇕ \[⇡ × $ahead_count\] \[⇣ × $behind_count\]](yellow) '
+# untracked = ' [\[? × $count\]](bright-red) '
+# stashed = ' [\[$\]](bright-white) '
+# modified = ' [\[! ×$count\]](red) '
+# staged = ' [\[++ × $count\]](green) '
+# renamed = ' [\[>> × $count]\](cyan) '
+# deleted = ' [\[♻ × $count]\](red) '
+# format = "$all_status$ahead_behind"
+
+[c]
+symbol = " "
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_bg3)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_bg3)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_bg3)]($style)'
 
 [java]
-format = 'via [${symbol}(${version} )](cyan)'
+symbol = " "
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_bg3)]($style)'
 
-[kubernetes]
-format = 'on [⛵ $context \($namespace\)](cyan) '
+[kotlin]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_bg3)]($style)'
+
+[haskell]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_bg3)]($style)'
+
+[python]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_bg3)]($style)'
+
+[lua]
+symbol = "☽"
+style = "bg:color_blue"
+format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_bg3)]($style)'
+
+[docker_context]
+symbol = ""
+style = "bg:color_bg3"
+format = '[[ $symbol( $context) ](fg:#83a598 bg:color_blue)]($style)'
+
+[conda]
+style = "bg:color_bg3"
+format = '[[ $symbol( $environment) ](fg:#83a598 bg:color_blue)]($style)'
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:color_bg1"
+format = '[[  $time ](fg:color_fg0 bg:color_bg1)]($style)'
+
+[line_break]
 disabled = false
 
-[kubernetes.context_aliases]
-".*api-os-global-finods-com:6443.*" = "global"
-".*api-os-restricted-finods-com:6443.*" = "restricted"
-".*api-os-prod-finods-com:6443.*" = "production"
+[character]
+disabled = false
+success_symbol = '[>_](bold fg:color_purple)'
+error_symbol = '[>_](bold fg:color_red)'
+vimcmd_symbol = '[<_](bold fg:color_green)'
+vimcmd_replace_one_symbol = '[<_](bold fg:color_purple)'
+vimcmd_replace_symbol = '[<_](bold fg:color_purple)'
+vimcmd_visual_symbol = '[<_](bold fg:color_yellow)'
+
+# # Inserts a blank line between shell prompts
+# add_newline = true
+#
+# # Replace the "❯" symbol in the prompt with "➜"
+# # The name of the module we are configuring is "character"
+# [character]                           
+# success_symbol = ""
+# error_symbol = ""
+#
+# [directory]
+# truncation_length = 2
+# format = "[Salvador](white) [](bright-red)  [dir:](yellow) [$path](cyan)[$lock_symbol]($lock_style) "
+#
+# [git_branch]
+# format = '[in](yellow) [$symbol $branch](white)'
+# symbol = ""
+#
+# [git_commit]
+# commit_hash_length = 20
+# tag_symbol = ""
+# style = "bold green"
+#
+# [git_state]
+# format = '($state( $progress_current of $progress_total))'
+#
+#
+# [rust]
+# format = "[](bright-white) [ $version](yellow) "
+#
+# [golang]
+# format = "[](bright-white) [ $version](cyan) "
+#
+# [haskell]
+# format = "[](bright-white) [ $version](purple) "
+#
+# [java]
+# format = "[](bright-white) [ $version](dimmed red) "
+#
+# [kotlin]
+# format = "[](bright-white) [ $version](purple) "
+#
+# [nodejs]
+# format = "[](bright-white) [ $version](green) "
+#
+# [c]
+# format = "[](bright-white) [C ](bold blue)[$version](blue) "
+#
+# [kubernetes]
+# format = 'on [⛵ $context \($namespace\)](cyan) '
+# disabled = false
+#
+# [kubernetes.context_aliases]
+# ".*api-os-global-finods-com:6443.*" = "global"
+# ".*api-os-restricted-finods-com:6443.*" = "restricted"
+# ".*api-os-prod-finods-com:6443.*" = "production"
+#
+# # 
+# # •
+# # ℰ
+# # λ
+# # 🚀
+# # 
+# # 
+# # 
+#
+# # Disable the package module, hiding it from the prompt completely
+# [package]
+# format = "is [$symbol$version](yellow) "
+# # disabled = true
+#
+# [shell]
+# fish_indicator = ""
+# powershell_indicator = "_"
+# unknown_indicator = ""
+# style = "purple"
+# disabled = false
